@@ -1,0 +1,19 @@
+!!! Strict
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html;", "http-equiv" => "content-type"}/
+    %title TODOLIST
+    %meta{:content => "", :name => "keywords"}/
+    %meta{:content => "", :name => "description"}/
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  
+  .dark_fild
+  %body
+    #wrapper
+      #header
+        %img{:alt => "logo", :src => "image/logo.jpg"}
+      / #header
+      #content= yield
+  

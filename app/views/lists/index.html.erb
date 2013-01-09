@@ -1,0 +1,13 @@
+
+       <div id ="lists"> 
+         <script type=text/javascript>
+          this.listsJSON = <%= @lists.to_json(:include => [:records]).html_safe %>
+          
+          new Todolist.Routers.ListsRouter({lists: listsJSON})
+          Backbone.history.start()
+         </script>
+        </div>
+           
+       
+
+       
