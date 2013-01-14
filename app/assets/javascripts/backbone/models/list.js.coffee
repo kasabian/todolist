@@ -3,6 +3,15 @@ class Todolist.Models.List extends Backbone.Model
 
   defaults:
     name: null
+    
+  validate: (attributes)=>
+    errors = []
+    if attributes.name.length > 50
+     errors.push "name is too long"
+    if attributes.name.length == 0 
+     errors.push "name is too short" 
+    if errors.length > 0
+     return errors
  
   initialize: (options) =>
     @on('change:records', @parseRecords)
@@ -28,14 +37,14 @@ class Todolist.Models.List extends Backbone.Model
     e.$(".list_modal").css("visibility","hidden")
   
   set_task_name_with_modal: (e) ->
-    a = e.$(".title_task_fild").attr("value")
-    @.set({"name":a})
-    @.unset('updated_at')
-    @.unset('created_at')
-    r = @.get('records')
-    @.unset('records')
-    @.save()
-    @.set("records":r)
+    a = $.trim e.$(".title_task_fild").attr("value")
+    if a != ""  
+     @.set({"name":a})
+     @.unset('updated_at')
+     @.unset('created_at')
+     @.save("name":a)
+    else alert("поле пустое!!!")  
+    
 
 class Todolist.Collections.ListsCollection extends Backbone.Collection
   model: Todolist.Models.List

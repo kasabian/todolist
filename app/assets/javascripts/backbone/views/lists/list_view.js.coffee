@@ -10,16 +10,18 @@ class Todolist.Views.Lists.ListView extends Backbone.View
     
   add_record: () ->
     input_fild = @$(".new_record_fild") 
-    model = new Todolist.Models.Record
-    priority = 0
-    if @model.records.length != 0
-     priority = @model.records.models[0].get("priority")-1
-    model.set({"title":input_fild.attr("value"), "list_id":@model.get("id"),"priority": priority})
-    @model.records.add(model)
-    input_fild.attr("value":"")
-    input_fild.focus()
-    model.save()
-    @render()
+    if $.trim(input_fild.attr("value")) != "" 
+     model = new Todolist.Models.Record
+     priority = 0
+     if @model.records.length != 0
+      priority = @model.records.models[0].get("priority")-1
+     model.set({"title":input_fild.attr("value"), "list_id":@model.get("id"),"priority": priority})
+     @model.records.add(model)
+     input_fild.attr("value":"")
+     input_fild.focus()
+     model.save()
+     @render()
+    else alert("Нужно заполнить поле!!!") 
     
   edit_task_name: (el) -> 
     @model.show_task_name_modal(@)
@@ -27,6 +29,7 @@ class Todolist.Views.Lists.ListView extends Backbone.View
   set_task_name: (el) ->
     @model.set_task_name_with_modal(@)
     @model.hide_task_name_modal(@) 
+    @model.set("name","")
     @render()
     
     

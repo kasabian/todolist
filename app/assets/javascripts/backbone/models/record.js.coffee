@@ -7,6 +7,16 @@ class Todolist.Models.Record extends Backbone.Model
     title: null 
     list_id: null
     
+    
+  validate: (attributes)=>
+    errors = []
+    if attributes.title.length > 50 
+     errors.push "name is too long"
+    if attributes.title.length == 0 
+     errors.push "name is too short" 
+    if errors.length > 0
+     errors
+     
   unset_save: (e) ->
     @.unset('updated_at')
     @.unset('created_at')
@@ -23,9 +33,11 @@ class Todolist.Models.Record extends Backbone.Model
     e.$(".record_modal").css("visibility","hidden")
   
   set_record_title_with_modal: (e) ->
-    a = e.$(".title_task_fild").attr("value")
-    e.model.set({"title":a})
-    @unset_save()
+    a =$.trim e.$(".title_task_fild").attr("value")
+    if a != ""
+     e.model.set({"title":a})
+     @unset_save()
+    else alert("поле пустое!!!") 
  
  
 class Todolist.Collections.RecordsCollection extends Backbone.Collection

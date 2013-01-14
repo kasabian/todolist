@@ -56,7 +56,7 @@ class ListsController < ApplicationController
   # PUT /lists/1.json
   def update
     @list = List.find(params[:id])
-
+    params[:list].delete("records")
     respond_to do |format|
       if @list.update_attributes(params[:list])
         format.html { redirect_to @list, notice: 'List was successfully updated.' }

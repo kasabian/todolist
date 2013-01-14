@@ -122,6 +122,12 @@ input {
        font-size: 16px;
 	  
   }
+  .title_task_fild
+   {
+    color: #504514;
+    font-size: 16px;
+    height: 25px;
+   } 
   
   .edit1
   
@@ -171,7 +177,7 @@ input {
  .s4
  {
   font-size: 16px;
-  color:#9F9F9F;
+  color: #504514;
   margin-left: 57px;
   position: absolute;
   margin-top: 19px;
@@ -225,15 +231,15 @@ input {
  
  .dark_fild
  {
-    background: none repeat scroll 0 0 white;
+    background: none repeat scroll 0 0 #504514;
     height: 100%;
-    opacity: 0.5;
+    opacity: 0.4;
     position: fixed;
     visibility: hidden;
     width: 100%;
     z-index: 999;
-    top: 0px
- }
+    top: 0px;
+  }
  
  .b_add_task
  {
@@ -245,4 +251,19 @@ input {
  {
    float:left;
  }
-		  
+	
+ .table_priority
+  {
+     float:left; 
+     margin-top: -12px; 
+     margin-right: 2px;
+  }
+  .table_priority .tr1
+  {
+    border-bottom: 1px solid #9F9F9F;
+  } 
+  .table_priority .img2
+  { 
+    margin-top: 1px; 
+    position: absolute;
+  } 

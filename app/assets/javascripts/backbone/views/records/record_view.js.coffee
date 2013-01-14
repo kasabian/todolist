@@ -4,6 +4,7 @@ class Todolist.Views.Records.RecordView extends Backbone.View
   template: JST["backbone/templates/records/record"]
   events :
      "click .up_priority" : "up_priority"
+     "click .down_priority" : "down_priority"
      "click .remove_fild" : "destroy"
      "click .edit_fild" : "edit_record_title"
      "click .change_record_title" : "set_record_name"
@@ -16,9 +17,14 @@ class Todolist.Views.Records.RecordView extends Backbone.View
     @model.unset_save()  
   
   up_priority: (el) =>
-    @model.set("priority": @model.get("priority")+1.01)
+    @model.set("priority": @model.get("priority")-1.01)
     @model.unset_save()
     $(".hiden_fild").change()
+    
+  down_priority: (el) =>
+    @model.set("priority": @model.get("priority")+1.01)
+    @model.unset_save()
+    $(".hiden_fild").change()  
   
   edit_record_title: (el) -> 
     @model.show_record_title_modal(@)
