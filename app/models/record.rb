@@ -1,5 +1,7 @@
 class Record < ActiveRecord::Base
   attr_accessible :check, :priority, :title, :list_id
+  
+  validates :title, :length => { :in => 1..50} 
   belongs_to :list
   
   def self.set_priority list_id

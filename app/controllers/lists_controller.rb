@@ -2,10 +2,15 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all
+   if  current_user then
+    user = User.find_by_id(current_user.id)
+    @lists =  user.lists.all
+   else
+    @lists = nil
+   end 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @lists }
+      format.json { render json: @lists, :include => [:records]}
     end
   end
 
@@ -23,8 +28,8 @@ class ListsController < ApplicationController
   # GET /lists/new
   # GET /lists/new.json
   def new
+    
     @list = List.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @list }
@@ -39,8 +44,8 @@ class ListsController < ApplicationController
   # POST /lists
   # POST /lists.json
   def create
-    @list = List.new(params[:list])
-
+    u = User.find_by_id(current_user.id)
+    @list = u.lists.create(params[:list])    
     respond_to do |format|
       if @list.save
         format.html { redirect_to @list, notice: 'List was successfully created.' }
@@ -56,7 +61,7 @@ class ListsController < ApplicationController
   # PUT /lists/1.json
   def update
     @list = List.find(params[:id])
-
+    params[:list].delete("records")
     respond_to do |format|
       if @list.update_attributes(params[:list])
         format.html { redirect_to @list, notice: 'List was successfully updated.' }
@@ -73,7 +78,6 @@ class ListsController < ApplicationController
   def destroy
     @list = List.find(params[:id])
     @list.destroy
-
     respond_to do |format|
       format.html { redirect_to lists_url }
       format.json { head :no_content }
