@@ -12,7 +12,7 @@ class Todolist.Views.Lists.IndexView extends Backbone.View
 
   add_task: (e) =>    
     model = new Todolist.Models.List
-    model.set("name":"new")
+    model.set("name":"новый проект")
     @options.lists.push(model)
     model.save()    
     @render()

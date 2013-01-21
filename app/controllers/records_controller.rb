@@ -9,8 +9,8 @@ class RecordsController < ApplicationController
     end
   end
   
-  # POST /lists
-  # POST /lists.json
+  # POST /records
+  # POST /records.json
   def create
     @record = Record.new(params[:record])
     respond_to do |format|
@@ -23,8 +23,8 @@ class RecordsController < ApplicationController
     end
   end
 
-  # PUT /lists/1
-  # PUT /lists/1.json
+  # PUT /records/1
+  # PUT /records/1.json
   def update
     @record = Record.find(params[:id])
        
@@ -40,8 +40,8 @@ class RecordsController < ApplicationController
     end
   end
 
-  # DELETE /lists/1
-  # DELETE /lists/1.json
+  # DELETE /records/1
+  # DELETE /records/1.json
   def destroy
     @record = Record.find(params[:id])
     list_id = @record.list_id 
