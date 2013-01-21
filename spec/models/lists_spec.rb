@@ -3,6 +3,7 @@ require 'spec_helper'
 describe List do
   it { should have_db_column(:name) }
   it { should have_many(:records) }
+  it { should belong_to(:user) }
   
   it "should not create record with name length 0" do 
     List.create(:name => "")

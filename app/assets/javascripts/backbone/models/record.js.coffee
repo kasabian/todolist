@@ -4,7 +4,7 @@ class Todolist.Models.Record extends Backbone.Model
   defaults:
     check: 0 
     priority: 0.00
-    title: null 
+    title: ""
     list_id: null
     
     

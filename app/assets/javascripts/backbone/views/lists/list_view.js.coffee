@@ -16,11 +16,16 @@ class Todolist.Views.Lists.ListView extends Backbone.View
      if @model.records.length != 0
       priority = @model.records.models[0].get("priority")-1
      model.set({"title":input_fild.attr("value"), "list_id":@model.get("id"),"priority": priority})
-     @model.records.add(model)
+     if model.get("title") != ""
+       @model.records.add(model)
+     console.log model
      input_fild.attr("value":"")
      input_fild.focus()
-     model.save()
-     @render()
+     model.save(model.toJSON,
+       success: (userSession, response) => 
+        @render() 
+        )
+     
     else alert("Нужно заполнить поле!!!") 
     
   edit_task_name: (el) -> 

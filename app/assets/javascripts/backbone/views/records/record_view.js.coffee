@@ -17,6 +17,7 @@ class Todolist.Views.Records.RecordView extends Backbone.View
     @model.unset_save()  
   
   up_priority: (el) =>
+    console.log Todolist.currentUser
     @model.set("priority": @model.get("priority")-1.01)
     @model.unset_save()
     $(".hiden_fild").change()

@@ -2,7 +2,7 @@ class Todolist.Models.List extends Backbone.Model
   paramRoot: 'list'
 
   defaults:
-    name: null
+    name: ""
     
   validate: (attributes)=>
     errors = []

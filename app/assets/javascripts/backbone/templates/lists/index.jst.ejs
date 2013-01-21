@@ -2,12 +2,25 @@
  <div class="modal">
      <h1 style = "color:white">Новое значение </h1> <br />
      <input type ="texte" class = "title_task_fild"> <br />
-     <input type = "submit" value = "ok" class = "change_title">
+     <input type = "submit" value = "ok" class = "change_title button">
       
+ </div>
+ 
+ 
+ <div class = "auth">
+   <% if(Todolist.currentUser==null) {%>
+    <a href="/#new_session"> Вход </a>
+   <%}else{%>
+    <a href="/users/sign_out" data-method="get">Выход</a><br />
+    <%= Todolist.currentUser.get("email")%>
+   <%}%>
+    
  </div>
  <input type ="hidden"  class = "hiden_fild" value="H">
  <div class = "task"></div>
  
+ <% if(Todolist.currentUser!=null) {%>
   <div class = "b_add_task"> 
     <img src = "image/9.jpg" >
   </div>  
+ <%}%> 
